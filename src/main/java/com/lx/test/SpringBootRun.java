@@ -16,11 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @EnableAutoConfiguration
 public class SpringBootRun {
 
-
-
     public static void main(String[] args) {
         SpringApplication.run(SpringBootRun.class,args);
-
     }
 
 

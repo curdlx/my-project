@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../static/angular.min.js"></script>
+    <script type="text/javascript" src="../static/model/user.js"></script>
+    <script>
+        function ShoppingController($scope, $http) {
+            debugger;
+            $http.get('/test').success(function(data, status, headers, config) {
+
+                $scope.items = data;
+
+            });
+
+        }
+    </script>
+</head>
+<body ng-controller="ShoppingController">
+
+<h1>Shop!</h1>
+
+<table>
+
+    <tr ng-repeat="item in items">
+
+        <td>{{item.name}}</td>
+
+        <td>{{item.age}}</td>
+
+        <td>{{item.wage}}</td>
+
+    </tr>
+
+</table>
+
+</div>
+
+</body>
+</html>
