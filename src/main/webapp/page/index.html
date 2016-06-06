@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/angular.min.js"></script>
+    <script src="../static/controller/clubs.js"></script>
+</head>
+<body  ng-controller="ClubController">
+<ul>
+
+    <li ng-repeat="item in clubs">
+        <span>{{item.champ}}</span>
+        <p>
+            {{item.club}}
+        </p>
+    </li>
+
+</ul>
+</body>
+</html>
