@@ -3,28 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script type="text/javascript" src="../static/angular.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/plupload/jquery.plupload.queue/css/jquery.plupload.queue.css">
+    <script type="text/javascript" src="../static/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../static/plupload/plupload.full.min.js"></script>
+    <script type="text/javascript" src="../static/plupload/jquery.plupload.queue/jquery.plupload.queue.min.js"></script>
+    <script type="text/javascript" src="../static/plupload/i18n/zh_CN.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            function plupload(){
+                $("#uploader").pluploadQueue({
+//				browse_button:"browse",
+                    runtimes : 'html5,gears,browserplus,silverlight,flash,html4',
+                    url : '/audio/upload',
+                    max_file_size : '50mb',
+                    unique_names : true,
+                    prevent_duplicates:true,//限制相同文件
+                    filters : [ {
+                        title : "Audio files",
+                        extensions : "mp3"
+                    } ],
+                    // Flash settings
+                    flash_swf_url : '../static/plupload/Moxie.swf',
+                    // Silverlight settings
+                    silverlight_xap_url : '../static/plupload/Moxie.xap'
+                });
+
+                var upload = $('#uploader').pluploadQueue();
+
+                upload.bind('BeforeUpload', function(uploader, filters) {
+                    //验证音频类型是否为空
+                    if(!$("#audioType").val()||$("#audioType").val()==""){
+                        alert("选择音频类型");
+                        plupload();
+                        return false;
+                    }
+                    //绑定音频类型
+//                    uploader.settings.multipart_params.audioType = $('#audioType').val();
+                });
+            }
+
+            plupload();
+            $("#reload").click(function(){
+                plupload();
+                $('#audioType').val("");
+            })
+        })
+
+    </script>
 </head>
 <body>
-<div ng-app="myApp" ng-controller="customersCtrl">
-
-
-    <ul>
-        <li ng-repeat="x in names">
-            {{ x.name + ', ' + x.age }}
-        </li>
-    </ul>
-
-    <script>
-
-        var app = angular.module('myApp', []);
-        app.controller('customersCtrl', function ($scope, $http) {
-            $http.get("/test")
-                    .success(function (response) {
-                        $scope.names = response;
-                    });
-        });
-    </script>
+<div>
+    <form id="audioForm" name="audioFile" method="post" enctype="multipart/form-data">
+        <div id="uploader">
+            <p>您的浏览器未安装 Flash, Silverlight, Gears, BrowserPlus 或者不支持 HTML5 .</p>
+        </div>
+        <div style="overflow:auto;padding:5px;" border="false">
+            音频类型：<select name="type" id="audioType">
+            <option></option>
+            <option value="32">32K</option>
+            <option value="64">64K</option>
+            <option value="128">128K</option>
+        </select>
+        </div>
+        <button id="reload" type="button">重新上传</button>
+    </form>
 </div>
 
 
