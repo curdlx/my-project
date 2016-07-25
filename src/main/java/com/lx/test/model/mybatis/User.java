@@ -7,23 +7,11 @@ public class User implements Serializable{
 
     private String name;
 
-    private Integer age;
+    private int age;
 
     private Integer sex;
 
     private Float wage;
-
-
-    public User() {
-    }
-
-    public User(Integer id, String name, Integer age, Integer sex, Float wage) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.sex = sex;
-        this.wage = wage;
-    }
 
     public Integer getId() {
         return id;
@@ -41,11 +29,11 @@ public class User implements Serializable{
         this.name = name;
     }
 
-    public Integer getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(int age) {
         this.age = age;
     }
 

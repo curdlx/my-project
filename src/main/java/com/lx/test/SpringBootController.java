@@ -20,7 +20,7 @@ public class SpringBootController implements Serializable{
     private static Map<Integer,User> map =null;
     static {
          map = new HashMap<Integer, User>();
-        map.put(1,new User(1,"lixin",1,26,16.2f));
+//        map.put(1,new User(1,"lixin",1,26,16.2f));
     }
 
     @RequestMapping("/test")
