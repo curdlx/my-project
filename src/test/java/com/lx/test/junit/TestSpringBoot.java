@@ -1,10 +1,12 @@
 package com.lx.test.junit;
 
 import com.alibaba.druid.support.json.JSONUtils;
+import com.alibaba.fastjson.JSON;
 import com.lx.test.SpringBootRun;
 import com.lx.test.model.mybatis.Address;
 import com.lx.test.model.mybatis.User;
 import com.lx.test.repository.AddressMapper;
+import com.lx.test.repository.JedisDaoimpl;
 import com.lx.test.repository.UserMapper;
 import org.junit.Assert;
 import org.junit.Test;
@@ -26,6 +28,8 @@ public class TestSpringBoot {
     private UserMapper userMapper;
     @Autowired
     private AddressMapper addressMapper;
+    @Autowired
+    private JedisDaoimpl jedisDaoimpl;
     @Test
     public void test1() {
         User user = userMapper.selectByPrimaryKey(1);
@@ -38,7 +42,7 @@ public class TestSpringBoot {
         User user = new User();
         user.setId(1);
         user.setName("lixin");
-        String s = JSONUtils.toJSONString(user);
+        String s = JSON.toJSONString(user);
         System.out.println(s);
     }
 
